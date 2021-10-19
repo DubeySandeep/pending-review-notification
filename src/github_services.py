@@ -11,7 +11,7 @@ from github_domain import PullRequest
 
 
 _TOKEN = None
-PULL_REQUESTS_URL_TEMPLATE = 'https://api.github.com/repos/{0}/{0}/pulls'
+PULL_REQUESTS_URL_TEMPLATE = 'https://api.github.com/repos/{0}/{1}/pulls'
 ISSUE_TIMELINE_URL_TEMPLATE = 'https://api.github.com/repos/{0}/{1}/issues/{2}/timeline'
 CREATE_DISCUSSION_URL_TEMPLATE = 'https://api.github.com/orgs/{0}/teams/{1}/discussions'
 
