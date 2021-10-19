@@ -44,6 +44,7 @@ jobs:
   - Replace `<< TEAM_SLUR >>` & `<< TURNAROUND_HOURS >>` with the team name and expected PR review time.
   - The [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) needs to quoted as * is a special character in YAML.
 
+
 2. Add PENDING_REVIEW_NOTIFICATION_TEMPLATE.yml file in `.github/` dir.
 Example:
 ```
@@ -63,9 +64,9 @@ Please make sure to reply to this thread once all the PRs are reviewed!
 
 | Name          | Requirement | Default | Description |
 | ------------- | ----------- | ------- | ----------- |
-| `team-slur`     | _required_  | | The name of the team where discussion thread will be created.|
-| `repo-token`  | _required_  | | The github-personal-token which atleast have rights to create a discussion in the given team. |
-| `review-turnaround-hours` | _required_  | The maximum review turnaround hours. Notifications will be sent only for PRs waiting for more than review-turnaround-hours.
+| `team-slur`               | _required_  | | The name of the team where discussion thread will be created.|
+| `repo-token`              | _required_  | | The github-personal-token which atleast have rights to create a discussion in the given team. |
+| `review-turnaround-hours` | _required_  | | The maximum review turnaround hours. Notifications will be sent only for PRs waiting for more than review-turnaround-hours.|
 
 
 ## License
