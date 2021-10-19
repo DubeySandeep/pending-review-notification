@@ -57,7 +57,7 @@ Can you please review the pending PRs as soon as possible?
 Please make sure to reply to this thread once all the PRs are reviewed!
 ```
   **Important notes:**
-    - Template can have `username` and  `pr_list` placeholders which will eventually get replaces with the reviewer's username and the list of PRs waiting on their review.
+    - Template can have `username` and  `pr_list` placeholders which will eventually get replaced with the reviewer's username and the list of PRs waiting on their review respectively.
 
 ## Inputs
 
