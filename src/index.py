@@ -68,7 +68,7 @@ def main(args=None):
     """The main function to execute the workflow."""
     parsed_args = PARSER.parse_args(args=args)
     team_name = parsed_args.team
-    org_name, repo = parsed_args.repo.split('/')
+    org_name, repo = 'oppia', 'oppia' # parsed_args.repo.split('/')
     max_wait_hours = parsed_args.max_wait_hours
 
     if parsed_args.verbose:
