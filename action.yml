@@ -1,0 +1,26 @@
+name: 'Send pending review notifications on team-discussion'
+description: 'Send pending review notifications on team-discussion'
+branding:
+  icon: 'bell'
+  color: 'red'
+inputs:
+  team-slur:
+    description: 'The name of the team. This will be use to send notification in team-discussion.'
+    required: true
+  repo-token:
+    description: 'The github-token to be used for creating github discussions.'
+    required: true
+  review-turnaround-hours:
+    description: 'The maximum review turnaround hours.'
+    required: true
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      run: python3 -m pip install requests python-dateutil
+      shell: bash
+    - name: Send notification
+      run: PYTHONIOENCODING=utf-8 python3 src/index.py --team=${{ inputs.team-slur }} --repo=${{ github.repository }} --token=${{ inputs.repo-token }} --max-wait-hours=${{ input.review-turnaround-hours}} --verbose
+      shell: bash
