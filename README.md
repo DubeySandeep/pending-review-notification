@@ -40,10 +40,9 @@ jobs:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           review-turnaround-hours: << TURNAROUND_HOURS >>
 ```
-**Important notes:**
-  - Replace `<< TEAM_SLUR >>` & `<< TURNAROUND_HOURS >>` with the team name and expected PR review time.
-  - The [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) needs to quoted as * is a special character in YAML.
-
+  **Important notes:**
+    - Replace `<< TEAM_SLUR >>` & `<< TURNAROUND_HOURS >>` with the team name and expected PR review time.
+    - The [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) needs to quoted as * is a special character in YAML.
 
 2. Add PENDING_REVIEW_NOTIFICATION_TEMPLATE.yml file in `.github/` dir.
 Example:
@@ -57,8 +56,8 @@ Can you please review the pending PRs as soon as possible?
 
 Please make sure to reply to this thread once all the PRs are reviewed!
 ```
-**Important notes:**
-  - Template can have `username` and  `pr_list` placeholders which will eventually get replaces with the reviewer's username and the list of PRs waiting on their review.
+  **Important notes:**
+    - Template can have `username` and  `pr_list` placeholders which will eventually get replaces with the reviewer's username and the list of PRs waiting on their review.
 
 ## Inputs
 
