@@ -62,6 +62,7 @@ indent-string='    '
 ignore-imports=yes
 
 [MESSAGES CONTROL]
+disable=consider-using-f-string, unspecified-encoding
 
 [REPORTS]
 

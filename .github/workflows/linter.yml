@@ -22,7 +22,7 @@ jobs:
           python-version: '3.7'
           architecture: 'x64'
       - name: Install dependencies
-        run: python3 -m pip install pylint
+        run: python3 -m pip install pylint==2.11.1
         shell: bash
       - name: Run pylint checks
         run: pylint src
