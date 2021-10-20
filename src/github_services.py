@@ -12,8 +12,10 @@ from github_domain import PullRequest
 
 _TOKEN = None
 PULL_REQUESTS_URL_TEMPLATE = 'https://api.github.com/repos/{0}/{1}/pulls'
-ISSUE_TIMELINE_URL_TEMPLATE = 'https://api.github.com/repos/{0}/{1}/issues/{2}/timeline'
-CREATE_DISCUSSION_URL_TEMPLATE = 'https://api.github.com/orgs/{0}/teams/{1}/discussions'
+ISSUE_TIMELINE_URL_TEMPLATE = (
+    'https://api.github.com/repos/{0}/{1}/issues/{2}/timeline')
+CREATE_DISCUSSION_URL_TEMPLATE = (
+    'https://api.github.com/orgs/{0}/teams/{1}/discussions')
 
 def init_service(token=None):
     """Intialize service with the given token."""
@@ -29,7 +31,8 @@ def check_token(func):
         """Executes the given function if the token is intialized."""
         if _TOKEN is None:
             raise Exception(
-                'Intialize the service with gtihub_services.init_service(TOKEN).')
+                'Intialize the service with '
+                'gtihub_services.init_service(TOKEN).')
         return func(*args, **kwargs)
 
     return execute_if_token_initialized
@@ -74,7 +77,8 @@ def get_prs_assigned_to_reviewers(org_name, repository, wait_hours):
             if not pull_request.is_reviewer_assigned():
                 continue
             for reviewer in pull_request.assignees:
-                pending_review_time = datetime.now(timezone.utc) - reviewer.timestamp
+                pending_review_time = (
+                    datetime.now(timezone.utc) - reviewer.timestamp)
                 if (reviewer.name != pull_request.author) and (
                         pending_review_time >= timedelta(hours=wait_hours)):
                     reviewer_to_assigned_prs[reviewer.name].append(pull_request)
@@ -82,6 +86,7 @@ def get_prs_assigned_to_reviewers(org_name, repository, wait_hours):
 
 
 def __process_activity(pull_request, event):
+    """Process activity and updates assignee timestamps."""
     if event['event'] != 'assigned':
         return
 
@@ -126,6 +131,7 @@ def create_discussion(org_name, team_slug, title, body):
     """
     url = CREATE_DISCUSSION_URL_TEMPLATE.format(org_name, team_slug)
     data = {'title': title, 'body': body}
+    logging.info('Creating discussion with title "%s"', title)
     response = requests.post(
         url,
         json=data,

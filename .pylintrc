@@ -1,0 +1,69 @@
+# To run this, install pylint and use the command:
+#
+#   pylint core --rcfile=.pylintrc -i y
+
+[GENERAL]
+
+[MASTER]
+string-quote=single
+triple-quote=double
+docstring-quote=double
+
+[BASIC]
+
+# Regular expression which should only match correct function names
+function-rgx=^[_a-z][a-z0-9_]*$
+
+# Regular expression which should only match correct method names
+method-rgx=^([_a-z][a-z0-9_]*|__[a-z0-9]+__)$
+
+# Regular expression which should only match correct constant names
+const-rgx=^(([A-Z_][A-Z0-9_]*)|(__.*__)|([a-z_]+_models)|([a-z_]+_services))$
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=e,_,d,f,i,l,p,w,fn,fs,id,pc,sc,zf,setUp,tearDown,longMessage,maxDiff,T
+
+# Regex for dummy variables (to prevent 'unused argument' errors)
+dummy-variables-rgx=_|unused_*
+
+# Regular expression which should match good variable names
+variable-rgx=^(?:|_)[a-z][a-z0-9]*(_[a-z0-9]+)*$
+
+# Regular expression matching correct attribute names
+attr-rgx=[A-Za-z_][A-Za-z0-9_]*$
+
+# Regular expression matching correct argument names
+argument-rgx=[A-Za-z_][A-Za-z0-9_]*$
+
+# Regular expression matching correct module names
+module-rgx=[A-Za-z_][A-Za-z0-9_]*$
+
+# Regular expression which should only match function or class names that do
+# not require a docstring.
+no-docstring-rgx=test_[a-z_]*|[A-Za-z]*Tests|Mock[A-Za-z]*|mock_[a-z_]*|setUp|tearDown|__.*__
+
+[DESIGN]
+
+# Minimum number of public methods for a class (see R0903).
+min-public-methods=0
+
+# List of builtin function names that should not be used, separated by a comma
+bad-functions=apply,input
+
+[FORMAT]
+
+max-line-length=80
+ignore-long-lines=^.*#\stype:\signore.*$|^\s*(# )?<?https?://\S+>?$
+
+indent-string='    '
+
+[SIMILARITIES]
+
+ignore-imports=yes
+
+[MESSAGES CONTROL]
+
+[REPORTS]
+
+# Hide statistics, external dependencies and overall rating.
+reports=no

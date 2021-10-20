@@ -37,7 +37,8 @@ def generate_message(username, pr_list):
     """
     template_path = '.github/PENDING_REVIEW_NOTIFICATION_TEMPLATE.md'
     if not os.path.exists(template_path):
-        raise Exception('Please add a template on path: {0}'.format(template_path))
+        raise Exception(
+            'Please add a template on path: {0}'.format(template_path))
     message = ''
     with open(template_path, 'r') as file:
         message = file.read()
