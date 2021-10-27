@@ -5,6 +5,7 @@
 [GENERAL]
 
 [MASTER]
+init-hook='import sys; sys.path.append(".")'
 string-quote=single
 triple-quote=double
 docstring-quote=double
@@ -62,7 +63,7 @@ indent-string='    '
 ignore-imports=yes
 
 [MESSAGES CONTROL]
-disable=consider-using-f-string, unspecified-encoding
+disable=consider-using-f-string, unspecified-encoding, too-many-arguments, import-error
 
 [REPORTS]
 

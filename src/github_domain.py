@@ -2,11 +2,11 @@
 
 from datetime import datetime, timezone, MINYEAR
 
-_DEFAULT_TIMESTAMP = datetime(MINYEAR, 1, 1, tzinfo=timezone.utc)
+DEFAULT_TIMESTAMP = datetime(MINYEAR, 1, 1, tzinfo=timezone.utc)
 
 class Assignee:
     """A class representing a assignee of a pull request."""
-    def __init__(self, name, timestamp=_DEFAULT_TIMESTAMP):
+    def __init__(self, name, timestamp=DEFAULT_TIMESTAMP):
         self.name = name
         self.timestamp = timestamp
 
@@ -35,15 +35,11 @@ class Assignee:
 
 class PullRequest:
     """A class representing a pull request on github."""
-    def __init__(self, url, number, author, title):
+    def __init__(self, url, number, author, title, assignees):
         self.url = url
         self.number = number
         self.title = title
         self.author = author
-        self.assignees = []
-
-    def add_assignees(self, assignees):
-        """Adds assignee to the PullRequest."""
         self.assignees = assignees
 
     def is_reviewer_assigned(self):
@@ -68,7 +64,7 @@ class PullRequest:
             url=pr_dict['html_url'],
             number=pr_dict['number'],
             title=pr_dict['title'],
-            author=pr_dict['user']['login']
+            author=pr_dict['user']['login'],
+            assignees=assignees
         )
-        pull_request.add_assignees(assignees)
         return pull_request

@@ -1,4 +1,4 @@
-name: Lint Checks
+name: Python test
 on:
   push:
     branches:
@@ -22,7 +22,7 @@ jobs:
           python-version: '3.7'
           architecture: 'x64'
       - name: Install dependencies
-        run: python3 -m pip install requests python-dateutil pylint==2.11.1
+        run: python3 -m pip install requests python-dateutil pylint==2.11.1 requests-mock
         shell: bash
-      - name: Run pylint checks
-        run: pylint src/ tests/
+      - name: Run python unit tests
+        run: python -m unittest discover -p "*_test.py"

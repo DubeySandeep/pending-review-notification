@@ -6,8 +6,7 @@ import logging
 import requests
 from dateutil import parser
 
-from github_domain import PullRequest
-
+from src.github_domain import PullRequest
 
 
 _TOKEN = None
