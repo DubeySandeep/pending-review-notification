@@ -21,7 +21,7 @@ runs:
       run: pip install -r ${{ github.action_path }}/requirements.txt
       shell: bash
     - name: Add path to enviornment
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      run: echo "PYTHONPATH=${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
     - name: Send notification
       run: PYTHONIOENCODING=utf-8 python3 ${{ github.action_path }}/src/index.py --team=${{ inputs.team-slug }} --repo=${{ github.repository }} --token=${{ inputs.repo-token }} --max-wait-hours=${{ inputs.review-turnaround-hours}} --verbose
