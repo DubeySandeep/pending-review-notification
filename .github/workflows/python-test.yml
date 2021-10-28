@@ -22,7 +22,7 @@ jobs:
           python-version: '3.7'
           architecture: 'x64'
       - name: Install dependencies
-        run: python3 -m pip install requests python-dateutil pylint==2.11.1 requests-mock
+        run: pip install -r requirements_dev.txt; pip install -r requirements.txt
         shell: bash
       - name: Run python unit tests
         run: python -m unittest discover -p "*_test.py"
