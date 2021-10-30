@@ -1,6 +1,6 @@
 name: Test own action on develop branch
 on:
-  pull_request:
+  push:
     branches:
       - develop
 
