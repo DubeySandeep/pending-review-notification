@@ -29,6 +29,10 @@ PARSER.add_argument(
     '--verbose',
     action='store_true',
     help='Whether to add important logs in the process.')
+PARSER.add_argument(
+    '--test_mode',
+    type=bool,
+    help='Run the program in test mode and does not sends notifications.')
 
 
 def generate_message(username, pr_list):
@@ -49,7 +53,7 @@ def generate_message(username, pr_list):
     return message
 
 
-def send_notification(username, pull_requests, org_name, team_name):
+def send_notification(username, pull_requests, org_name, team_name, test_mode):
     """Sends notification on github-discussion."""
     pr_list_messages = []
     for pull_request in pull_requests:
@@ -62,6 +66,10 @@ def send_notification(username, pull_requests, org_name, team_name):
     title = '[@{0}] Pending review on PRs'.format(username)
     body = generate_message(username, '\n'.join(pr_list_messages))
 
+    if test_mode:
+        logging.info('Logging notification title in test mode: %s', title)
+        return
+
     github_services.create_discussion(org_name, team_name, title, body)
 
 
@@ -71,17 +79,22 @@ def main(args=None):
     team_name = parsed_args.team
     org_name, repo = parsed_args.repo.split('/')
     max_wait_hours = parsed_args.max_wait_hours
+    test_mode = os.getenv('TEST_MODE_ENV')
+
 
     if parsed_args.verbose:
         logging.basicConfig(
             format='%(levelname)s: %(message)s', level=logging.INFO)
+
+    if test_mode:
+        logging.warning('Running in test mode')
 
     github_services.init_service(parsed_args.token)
 
     reviewer_to_assigned_prs = github_services.get_prs_assigned_to_reviewers(
         org_name, repo, max_wait_hours)
     for reviewer_name, prs in reviewer_to_assigned_prs.items():
-        send_notification(reviewer_name, prs, org_name, team_name)
+        send_notification(reviewer_name, prs, org_name, team_name, test_mode)
 
     return 0
 
