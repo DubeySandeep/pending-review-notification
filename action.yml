@@ -13,6 +13,7 @@ inputs:
   review-turnaround-hours:
     description: 'The maximum review turnaround hours.'
     required: true
+
 runs:
   using: "composite"
   steps:
