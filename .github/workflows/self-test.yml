@@ -1,8 +1,8 @@
-name: Test action
+name: Test own action on develop branch
 on:
   pull_request:
     branches:
-      - master
+      - develop
 
 jobs:
   send_notifications:
@@ -17,10 +17,10 @@ jobs:
         with:
           python-version: '3.7'
           architecture: 'x64'
-      - uses: DubeySandeep/pending-review-notification@init
+      - uses: DubeySandeep/pending-review-notification@develop
         with:
           team-slug: test-team
-          # GITHUB_TOKEN does not have rights to send notification, this is used
+          # GITHUB_TOKEN does not have right to send notifications, this is used
           # as a placeholder here as the action is running in test node.
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           review-turnaround-hours: 0

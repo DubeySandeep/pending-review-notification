@@ -1,13 +1,11 @@
-name: Python test
+name: Python script unit and integeration tests
 on:
   push:
     branches:
       - develop
-      - master
   pull_request:
     branches:
       - develop
-      - master
 
 jobs:
   lint:

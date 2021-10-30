@@ -70,7 +70,7 @@ Please make sure to reply to this thread once all the PRs are reviewed!
 
 ## Known issue
 
-The `secret.GITHUB_TOKEN` avialable in build container doesn't have permission to create discussion.
+The `secret.GITHUB_TOKEN` avialable in build container doesn't have permission to create discussion in team.
 
 ## License
 
