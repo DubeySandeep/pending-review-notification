@@ -25,11 +25,6 @@ runs:
       shell: bash
     - name: Send notification
       run: |
-        cd ${{ github.action_path }};
-        python3 -m src.index
-        --team="${{ inputs.team-slug }}"
-        --repo="${{ github.repository }}"
-        --token="${{ inputs.repo-token }}"
-        --max-wait-hours=${{ inputs.review-turnaround-hours}}
-        --verbose
+        cd ${{ github.action_path }}
+        python3 -m src.index --team=${{ inputs.team-slug }} --repo=${{ github.repository }} --token=${{ inputs.repo-token }} --max-wait-hours=${{ inputs.review-turnaround-hours}} --verbose
       shell: bash
