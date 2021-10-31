@@ -15,6 +15,7 @@ Action to send notifications to reviewers on github-discussion when they miss re
 2. [Create a new repository secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) (assuming DISCUSSION_NOTIFICATION_TOKEN) with value as the newly generated personal access token.
 
 3. Create a workflow file in the `.github/workflows/` dir.
+
     **Example:**
     ```yaml
     name: Send pending review notifications to reviewer on github-discussion
@@ -46,19 +47,20 @@ Action to send notifications to reviewers on github-discussion when they miss re
       - The [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07) needs to quoted as * is a special character in YAML.
 
 4. Add PENDING_REVIEW_NOTIFICATION_TEMPLATE.yml file in `.github/` dir.
-Example:
-```
-Hi {{ username }},
 
-It looks like you haven't reviewed the following PRs within the expected time:
-{{ pr_list }}
+   Example:
+   ```
+   Hi {{ username }},
 
-Can you please review the pending PRs as soon as possible?
+   It looks like you haven't reviewed the following PRs within the expected time:
+   {{ pr_list }}
 
-Please make sure to reply to this thread once all the PRs are reviewed!
-```
-  **Important notes:**
-    - Template can have `username` and  `pr_list` placeholders which will eventually get replaced with the reviewer's username and the list of PRs waiting on their review respectively.
+   Can you please review the pending PRs as soon as possible?
+
+   Please make sure to reply to this thread once all the PRs are reviewed!
+   ```
+     **Important notes:**
+       - Template can have `username` and  `pr_list` placeholders which will eventually get replaced with the reviewer's username and the list of PRs waiting on their review respectively.
 
 ## Inputs
 
