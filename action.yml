@@ -1,0 +1,30 @@
+name: 'Send pending review notifications on team-discussion'
+description: 'Send pending review notifications on team-discussion'
+branding:
+  icon: 'bell'
+  color: 'red'
+inputs:
+  team-slug:
+    description: 'The name of the team. This will be use to send notification in team-discussion.'
+    required: true
+  repo-token:
+    description: 'The github-token to be used for creating github discussions.'
+    required: true
+  review-turnaround-hours:
+    description: 'The maximum review turnaround hours.'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      run: pip install -r ${{ github.action_path }}/requirements.txt
+      shell: bash
+    - name: Add path to enviornment
+      run: echo "PYTHONPATH=${{ github.action_path }}" >> $GITHUB_PATH; echo $GITHUB_PATH
+      shell: bash
+    - name: Send notification
+      run: |
+        cd ${{ github.action_path }}
+        python3 -m src.index --team=${{ inputs.team-slug }} --repo=${{ github.repository }} --token=${{ inputs.repo-token }} --max-wait-hours=${{ inputs.review-turnaround-hours}} --verbose
+      shell: bash
